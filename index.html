@@ -62,10 +62,17 @@
     <script>
       async function main() {
         const pokemon_to_id = {};
+        const missed_pokemons = []
         for (const pokemon of Object.values(table_to_pokemon)) {
           const response = await fetch(
             `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
-          );
+          ).catch(() => ({
+            ok: false
+          }))
+          if (!response.ok) {
+            missed_pokemons.push(pokemon)
+            continue
+          }
           const poke = await response.json();
           pokemon_to_id[pokemon] = poke.id;
         }
