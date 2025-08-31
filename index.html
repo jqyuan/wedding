@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html class="h-full bg-white">
   <head>
     <meta charset="UTF-8" />
     <title>Josh + Janissa</title>
@@ -8,23 +8,41 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
   </head>
-  <body class="bg-gray-100 flex items-center justify-center h-screen">
-    <div x-data="app">
-      <h1 class="text-xl font-bold text-center mb-4">
-        Find Your Pokemon (Table)
-      </h1>
-      <input
-        x-model="name"
-        type="text"
-        placeholder="Enter your name"
-        autocomplete="name"
-        class="block w-full rounded-md bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500" />
-      <button
-        @click="submit()"
-        class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
+  <body x-data="app" class="h-full">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <h2
+        class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900"
       >
-        Submit
-      </button>
+        Find Your Pokemon (Table)
+      </h2>
+    </div>
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form @submit.prevent="submit()" class="space-y-6">
+        <div>
+          <label for="name" class="block text-sm/6 font-medium text-gray-900"
+            >Full Name</label
+          >
+          <div class="mt-2">
+            <input
+              x-model="name"
+              id="name"
+              type="text"
+              name="name"
+              required
+              autocomplete="name"
+              class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+            />
+          </div>
+        </div>
+        <div>
+          <button
+            type="submit"
+            class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
       <img
         :src="pokemonImage"
         alt="Silhouette Pokémon"
@@ -32,26 +50,30 @@
         class="w-60 h-60 brightness-0 duration-500 my-2"
       />
       <div x-show="showTableNumber && tableNumber" class="mt-4 text-center">
-        <p class="text-lg">Hello <span class="font-semibold" x-text="name"></span>!</p>
-        <p class="text-xl font-bold text-green-600">Your Table Number: <span x-text="tableNumber"></span></p>
+        <p class="text-lg">
+          Hello <span class="font-semibold" x-text="name"></span>!
+        </p>
+        <p class="text-xl font-bold text-green-600">
+          Your Table Number: <span x-text="tableNumber"></span>
+        </p>
       </div>
     </div>
     <script src="./main.js"></script>
     <script>
-      document.addEventListener('alpine:init', () => {
-        Alpine.data('app', () => ({
+      document.addEventListener("alpine:init", () => {
+        Alpine.data("app", () => ({
           name: "",
           tableNumber: "",
           showTableNumber: false,
           pokemonImage: "",
           submit() {
-            this.tableNumber = name_to_table[this.name]
-            const pokemon = table_to_pokemon[this.tableNumber]
-            const pokemonId = pokemon_to_id[pokemon]
+            this.tableNumber = name_to_table[this.name];
+            const pokemon = table_to_pokemon[this.tableNumber];
+            const pokemonId = pokemon_to_id[pokemon];
             this.pokemonImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
           },
-        }))
-      })
+        }));
+      });
     </script>
   </body>
 </html>
