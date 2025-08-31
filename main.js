@@ -226,3 +226,31 @@ const table_to_pokemon = {
   24: "Houndour",
   25: "Ralts",
 };
+
+// TODO: Morpeko
+const pokemon_to_id = {
+  "Pikachu": 25,
+  "Eevee": 133,
+  "Spheal": 363,
+  "Snorlax": 143,
+  "Hoothoot": 163,
+  "Slowpoke": 79,
+  "Squirtle": 7,
+  "Plusle": 311,
+  "Dugtrio": 51,
+  "Starly": 396,
+  "Lechonk": 915,
+  "Mareep": 179,
+  "Porygon": 137,
+  "Rockruff": 744,
+  "Tandemaus": 924,
+  "Larvitar": 246,
+  "Froakie": 656,
+  "Drifloon": 425,
+  "Riolu": 447,
+  "Lapras": 131,
+  "Cyndaquil": 155,
+  "Piplup": 393,
+  "Houndour": 228,
+  "Ralts": 280
+}
