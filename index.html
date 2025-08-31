@@ -11,7 +11,7 @@
   </head>
   <body class="bg-gray-100 flex items-center justify-center h-screen">
     <div x-data="tableApp()" class="bg-white shadow-lg rounded-xl p-6 w-96">
-      <h1 class="text-2xl font-bold text-center mb-4">Find Your Table</h1>
+      <h1 class="text-2xl font-bold text-center mb-4">Find Your Pokemon (Table)</h1>
       <input 
         x-model="name" 
         type="text" 
@@ -19,15 +19,31 @@
         class="w-full p-2 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
       <button 
-        @click="getTableNumber()" 
+        @click="submit()" 
         class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
-          Show Table Number
+          Submit
       </button>
-
-      <div x-show="tableNumber" class="mt-4 text-center">
+      <div x-show="showSilhouette" class="mt-6 text-center">
+        <p class="mb-2">Who's that Pokémon...? Guess by silhouette!</p>
+        <div class="inline-block relative">
+          <img
+            :src="pokemonImage"
+            alt="Silhouette Pokémon"
+            class="w-40 h-40 object-contain transition-filter duration-500"
+            :class="{'filter brightness-0': !revealed}"
+          />
+          <button 
+            x-show="!revealed"
+            @click="reveal()"
+            class="absolute inset-0 flex items-center justify-center text-white text-lg font-semibold"
+          >Reveal!</button>
+        </div>
+      </div>
+  
+      <div x-show="revealed && tableNumber" class="mt-4 text-center">
         <p class="text-lg">Hello <span class="font-semibold" x-text="name"></span>!</p>
         <p class="text-xl font-bold text-green-600">Your Table Number: <span x-text="tableNumber"></span></p>
-      </div>
+      </div>  
     </div>
   </body>
 </html>

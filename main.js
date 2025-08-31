@@ -196,21 +196,91 @@ const name_to_table = {
   "Y Peter Peng": 10,
   "Yinting Tso": 11,
   "Younghae Chung": 17,
-  "Zaiden Munakata": 8
+  "Zaiden Munakata": 8,
+};
+
+const table_to_pokemon = {
+  1: "Pikachu",
+  2: "Eevee",
+  3: "Spheal",
+  4: "Snorlax",
+  5: "Hoothoot",
+  6: "Slowpoke",
+  7: "Squirtle",
+  8: "Plusle",
+  9: "Dugtrio",
+  10: "Starly",
+  11: "Lechonk",
+  12: "Mareep",
+  13: "Porygon",
+  14: "Rockruff",
+  15: "Tandemaus",
+  16: "Morpeko",
+  17: "Larvitar",
+  18: "Froakie",
+  19: "Drifloon",
+  20: "Riolu",
+  21: "Lapras",
+  22: "Cyndaquil",
+  23: "Piplup",
+  24: "Houndour",
+  25: "Ralts",
+};
+
+async function main() {
+  const pokemon_to_id = {};
+  for (const pokemon of Object.values(table_to_pokemon)) {
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
+    );
+    const poke = await response.json();
+    pokemon_to_id[pokemon] = poke.id;
+  }
+  console.log(pokemon_to_id);
 }
 
 function tableApp() {
   return {
-    name: '',
-    tableNumber: '',
-    getTableNumber() {
-      if (this.name.trim() === '') {
-        this.tableNumber = '';
+    name: "",
+    tableNumber: null,
+    pokemonImage: "",
+    showSilhouette: false,
+    revealed: false,
+
+    async submit() {
+      if (!this.name.trim()) {
+        this.reset();
         return;
       }
-      
-      // Example: simple hash to assign table number
-      this.tableNumber = name_to_table[this.name]
-    }
-  }
+
+      const tableNumber = name_to_table[this.name];
+      const pokemon = table_to_pokemon[tableNumber];
+      main();
+      // for (const pokemon of )
+      // // Assign table number (simple hash logic)
+      // this.tableNumber = (this.name.length % 10) + 1;
+
+      // // Fetch a random Pokémon silhouette
+      // const res = await fetch('https://pokeapi.co/api/v2/pokemon/');
+
+      // const data = await res.json();
+      // const all = data.results;
+      // const random = all[Math.floor(Math.random() * all.length)];
+      // const id = random.url.match(/\/(\d+)\/$/)[1];
+      // this.pokemonImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+
+      // this.showSilhouette = true;
+      // this.revealed = false;
+    },
+
+    reveal() {
+      this.revealed = true;
+    },
+
+    reset() {
+      this.tableNumber = null;
+      this.showSilhouette = false;
+      this.revealed = false;
+    },
+  };
 }
