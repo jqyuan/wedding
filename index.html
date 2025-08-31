@@ -6,7 +6,7 @@
     <title>Josh + Janissa</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
     <style>
       [x-cloak] { display: none !important; }
     </style>
@@ -28,19 +28,29 @@
         name="name"
         required
         autofocus
+        x-bind:disabled="pokemonImage != ''"
         autocomplete="name"
         placeholder="Enter your full name"
-        class="block w-full rounded-md bg-white p-3 text-lg text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600"
+        class="block w-full rounded-md bg-white p-3 text-lg text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 disabled:opacity-50"
       />
       <button
         type="submit"
+        x-show="pokemonImage == ''"
         class="flex w-full transition-colors duration-150 justify-center rounded-md bg-indigo-600 p-3 text-lg font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
       >
         Submit
       </button>
+      <button
+        type="submit"
+        x-show="pokemonImage != ''"
+        x-on:click="reset()"
+        class="flex w-full transition-colors duration-150 justify-center rounded-md bg-indigo-600 p-3 text-lg font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      >
+        Reset
+      </button>
     </form>
     <p class="text-center mt-4 text-gray-700" x-show="!isRyanTong && guessed && !pokemonImage" x-cloak>We weren't able to find your table using that name, view the full seating chart <a class="text-indigo-600 hover:text-indigo-500 transition-colors duration-150" href="/wedding/seating_chart.pdf">here</a>.</p>
-    <p class="text-center mt-4 text-gray-700" x-show="isRyanTong && guessed" x-cloak>Ryan? Are you sure you didn't mean NoobyDud?</p>
+    <p class="text-center mt-4 text-gray-700" x-show="isRyanTong && guessed" x-cloak>Who's Ryan? Are you sure you didn't mean NoobyDud?</p>
     <p class="text-center my-4 text-gray-950" x-show="!showTableNumber && pokemonImage" x-cloak>
       Who's That Pokemon? Find the table that matches your pokemon!
     </p>
@@ -86,6 +96,14 @@
               }
             }
             this.guessed = true
+          },
+          reset() {
+            this.name = "";
+            this.guessed = false;
+            this.pokemonImage = ""
+            this.tableNumber = ""
+            this.showTableNumber = false;
+            this.isRyanTong = false;
           },
           reveal() {
             this.showTableNumber = true;
