@@ -55,7 +55,7 @@
           tableNumber: "",
           showTableNumber: false,
           pokemonImage: "",
-          reveal: false,
+          revealed: false,
           submit() {
             main()
             this.tableNumber = name_to_table[this.name]
@@ -64,7 +64,7 @@
             this.pokemonImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
           },
           reveal() {
-            this.reveal = true
+            this.revealed = true
           }
         }))
       })
