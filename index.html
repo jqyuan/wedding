@@ -42,10 +42,11 @@
     <img
       :src="pokemonImage"
       x-show="pokemonImage"
-      class="w-60 h-60 brightness-0 duration-500 my-2"
+      class="w-40 h-40 brightness-0"
     />
+    <p class="text-center mt-4 text-gray-700" x-show="guessed && !pokemonImage">View full seating chart here.</p>
     <p class="text-center mt-4 text-gray-700" x-show="pokemonImage">
-      Too hard? Click <button class="text-indigo-600 hover:text-indigo-500 transition-colors duration-150" x-on:click="reveal()">here</button> to reveal your
+      Too hard? Tap <button class="text-indigo-600 hover:text-indigo-500 transition-colors duration-150" x-on:click="reveal()">here</button> to reveal your
       number.
     </p>
     <p x-show="showTableNumber && tableNumber" class="text-xl font-bold text-green-600">
@@ -61,17 +62,16 @@
           guessed: false,
           pokemonImage: "",
           submit() {
-            this.guessed = true
             const name = this.name.toLowerCase();
             this.tableNumber = name_to_table[name];
             const pokemon = table_to_pokemon[this.tableNumber];
-            console.log(pokemon)
             if (pokemon == "Morpeko") {
-              this.pokemonImage = "/morpeko.png";
-            } else {
+              this.pokemonImage = "/wedding/morpeko.png";
+            } else if (pokemon != undefined) {
               const pokemonId = pokemon_to_id[pokemon];
               this.pokemonImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
             }
+            this.guessed = true
           },
           reveal() {
             this.showTableNumber = true;
