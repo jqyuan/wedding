@@ -226,26 +226,3 @@ const table_to_pokemon = {
   24: "Houndour",
   25: "Ralts",
 };
-
-async function main() {
-  const pokemon_to_id = {};
-  for (const pokemon of Object.values(table_to_pokemon)) {
-    const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
-    );
-    const poke = await response.json();
-    pokemon_to_id[pokemon] = poke.id;
-  }
-  console.log(pokemon_to_id);
-}
-
-document.addEventListener('alpine:init', () => {
-  Alpine.data('app', () => ({
-    name: "",
-    tableNumber: "",
-    submit() {
-      main()
-      this.tableNumber = name_to_table[this.name]
-    },
-  }))
-})
