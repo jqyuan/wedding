@@ -10,35 +10,27 @@
   </head>
   <body x-data="app" class="h-full flex flex-col items-center justify-center mx-4 sm:max-w-sm sm:mx-auto">
     <h2
-      class="text-center w-full my-6"
+      class="text-center w-full my-6 text-xl sm:text-3xl font-bold tracking-tight text-gray-950"
     >
       Find Your Pokemon (Table)
     </h2>
     <form @submit.prevent="submit()" class="space-y-6">
-      <div>
-        <label for="name" class="block text-sm/6 font-medium text-gray-900"
-          >Full Name</label
-        >
-        <div class="mt-2">
-          <input
-            x-model="name"
-            id="name"
-            type="text"
-            name="name"
-            required
-            autocomplete="name"
-            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-          />
-        </div>
-      </div>
-      <div>
-        <button
-          type="submit"
-          class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          Submit
-        </button>
-      </div>
+      <input
+        x-model="name"
+        id="name"
+        type="text"
+        name="name"
+        required
+        autocomplete="name"
+        placeholder="Enter your full name"
+        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+      />
+      <button
+        type="submit"
+        class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      >
+        Submit
+      </button>
     </form>
     <img
       :src="pokemonImage"
