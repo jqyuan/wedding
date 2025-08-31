@@ -58,11 +58,14 @@
           name: "",
           tableNumber: "",
           showTableNumber: false,
+          guessed: false,
           pokemonImage: "",
           submit() {
+            this.guessed = true
             const name = this.name.toLowerCase();
             this.tableNumber = name_to_table[name];
             const pokemon = table_to_pokemon[this.tableNumber];
+            console.log(pokemon)
             if (pokemon == "Morpeko") {
               this.pokemonImage = "/morpeko.png";
             } else {
@@ -78,6 +81,7 @@
             this.tableNumber = "";
             this.showTableNumber = false;
             this.pokemonImage = "";
+            this.guessed = false
           },
         }));
       });

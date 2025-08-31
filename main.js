@@ -227,7 +227,6 @@ const table_to_pokemon = {
   25: "Ralts",
 };
 
-// TODO: Morpeko
 const pokemon_to_id = {
   "Pikachu": 25,
   "Eevee": 133,
