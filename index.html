@@ -14,7 +14,7 @@
     >
       Find Your Pokemon (Table)
     </h2>
-    <form @submit.prevent="submit()" class="space-y-6">
+    <form @submit.prevent="submit()" class="space-y-6 w-full">
       <input
         x-model="name"
         id="name"
@@ -55,7 +55,8 @@
           showTableNumber: false,
           pokemonImage: "",
           submit() {
-            this.tableNumber = name_to_table[this.name];
+            const name = this.name.toLowerCase()
+            this.tableNumber = name_to_table[name];
             const pokemon = table_to_pokemon[this.tableNumber];
             const pokemonId = pokemon_to_id[pokemon];
             this.pokemonImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
