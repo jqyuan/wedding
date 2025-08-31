@@ -239,48 +239,13 @@ async function main() {
   console.log(pokemon_to_id);
 }
 
-function tableApp() {
-  return {
+document.addEventListener('alpine:init', () => {
+  Alpine.data('app', () => ({
     name: "",
-    tableNumber: null,
-    pokemonImage: "",
-    showSilhouette: false,
-    revealed: false,
-
-    async submit() {
-      if (!this.name.trim()) {
-        this.reset();
-        return;
-      }
-
-      const tableNumber = name_to_table[this.name];
-      const pokemon = table_to_pokemon[tableNumber];
-      main();
-      // for (const pokemon of )
-      // // Assign table number (simple hash logic)
-      // this.tableNumber = (this.name.length % 10) + 1;
-
-      // // Fetch a random Pokémon silhouette
-      // const res = await fetch('https://pokeapi.co/api/v2/pokemon/');
-
-      // const data = await res.json();
-      // const all = data.results;
-      // const random = all[Math.floor(Math.random() * all.length)];
-      // const id = random.url.match(/\/(\d+)\/$/)[1];
-      // this.pokemonImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
-
-      // this.showSilhouette = true;
-      // this.revealed = false;
+    tableNumber: "",
+    submit() {
+      main()
+      this.tableNumber = name_to_table[this.name]
     },
-
-    reveal() {
-      this.revealed = true;
-    },
-
-    reset() {
-      this.tableNumber = null;
-      this.showSilhouette = false;
-      this.revealed = false;
-    },
-  };
-}
+  }))
+})
