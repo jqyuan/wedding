@@ -5,6 +5,7 @@ const name_to_table = {
   "aerin yim": 22,
   "agnes zhu": 23,
   "alessandro louly": 3,
+  "sandro louly": 3,
   "alex yu": 13,
   "allison chien": 3,
   "andrew bryson": 11,
@@ -64,6 +65,7 @@ const name_to_table = {
   "gong gong luk": 12,
   "grace fernandes": 17,
   "h rebecca peng": 10,
+  "rebecca peng": 10,
   "hannah akahoshi": 13,
   "hannah chong": 1,
   "hannah de la cruz": 3,
@@ -112,6 +114,7 @@ const name_to_table = {
   "kenny siu": 16,
   "kim ramos": 5,
   "kim wong": 2,
+  "kim ting": 16,
   "kimberly ting": 16,
   "kobe ing": 18,
   "kristin akioka": 15,
@@ -162,6 +165,7 @@ const name_to_table = {
   "rachel wong": 8,
   "ray tai": 4,
   "raymond chao": 1,
+  "ray chao": 1,
   "riley gin": 20,
   "riley seid": 21,
   "robert chu": 23,
@@ -169,6 +173,7 @@ const name_to_table = {
   "ruby gin": 20,
   "ryan d'innocenzo": 7,
   "ryan tong": 20,
+  "noobydud": 20,
   "sam leong": 21,
   "samantha reed": 24,
   "sarah kang": 18,
@@ -197,6 +202,36 @@ const name_to_table = {
   "yinting tso": 11,
   "younghae chung": 17,
   "zaiden munakata": 8,
+  
+  // Alternative name mappings (short/long forms)"
+  "christopher gee": 7, // alt for chris gee
+  "matthew chan": 9, // alt for matt chan
+  "matthew chong": 1, // alt for matt chong
+  "matthew kim": 16, // alt for matt kim
+  "michael tang": 25, // alt for mike tang
+  "stephen gi": 14, // alt for steve gi
+  "steven gi": 14, // alt for steve gi
+  "timothy chung": 17, // alt for tim chung
+  "jacob deverian": 3, // alt for jake deverian
+  "james jin": 13, // alt for jimmy jin
+  "jennifer gi": 14, // alt for jenny gi
+  "jennifer liu": 2, // alt for jenny liu
+  "anthony reksoatmodjo": 11, // alt for tony reksoatmodjo
+  "susan chuang": 10, // alt for sue chuang
+  "samuel leong": 21, // alt for sam leong
+  "james shank": 4, // alt for jim shank
+  "nicholas huynh": 25, // alt for nick huynh
+  "joe yim": 7, // alt for joseph yim
+  "joey yim": 7, // alt for joseph yim
+  "joe zhu": 21, // alt for joseph zhu
+  "josh de la cruz": 24, // alt for joshua de la cruz
+  "josh wong": 12, // alt for joshua wong
+  "dan wesley serna": 15, // alt for daniel wesley serna
+  "daniel serna": 15, // alt for daniel wesley serna
+  "dan serna": 15, // alt for daniel wesley serna
+  "steve huang": 22, // alt for steven huang
+  "steve wong": 2, // alt for steven wong,
+  "peter peng": 10, // alt for y peter peng,
 };
 
 const table_to_pokemon = {

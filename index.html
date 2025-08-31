@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
+    <style>
+      [x-cloak] { display: none !important; }
+    </style>
   </head>
   <body
     x-data="app"
@@ -36,20 +39,22 @@
         Submit
       </button>
     </form>
-    <p class="text-center mt-4 text-gray-700" x-show="guessed && !pokemonImage">We weren't able to find your table using that name, view the full seating chart <a class="text-indigo-600 hover:text-indigo-500 transition-colors duration-150" href="/wedding/seating_chart.pdf">here</a>.</p>
-    <p class="text-center my-4 text-gray-950" x-show="!showTableNumber && pokemonImage">
+    <p class="text-center mt-4 text-gray-700" x-show="!isRyanTong && guessed && !pokemonImage" x-cloak>We weren't able to find your table using that name, view the full seating chart <a class="text-indigo-600 hover:text-indigo-500 transition-colors duration-150" href="/wedding/seating_chart.pdf">here</a>.</p>
+    <p class="text-center mt-4 text-gray-700" x-show="isRyanTong && guessed" x-cloak>Ryan? Are you sure you didn't mean NoobyDud?</p>
+    <p class="text-center my-4 text-gray-950" x-show="!showTableNumber && pokemonImage" x-cloak>
       Who's That Pokemon? Find the table that matches your pokemon!
     </p>
     <img
       :src="pokemonImage"
       x-show="!showTableNumber && pokemonImage"
+      x-cloak
       class="w-40 h-40 brightness-0"
     />
-    <p class="text-center mt-4 text-gray-700" x-show="!showTableNumber && pokemonImage">
+    <p class="text-center mt-4 text-gray-700" x-show="!showTableNumber && pokemonImage" x-cloak>
       Too hard? Tap <button class="text-indigo-600 hover:text-indigo-500 transition-colors duration-150" x-on:click="reveal()">here</button> to view your
       table number.
     </p>
-    <p x-show="showTableNumber && tableNumber" class="text-xl font-bold text-green-600 mt-4">
+    <p x-show="showTableNumber && tableNumber" x-cloak class="text-xl font-bold text-green-600 mt-4">
       Your table number is <span x-text="tableNumber"></span>
     </p>
     <script src="./main.js"></script>
@@ -61,30 +66,29 @@
           showTableNumber: false,
           guessed: false,
           pokemonImage: "",
+          isRyanTong: false,
           submit() {
             this.pokemonImage = ""
             this.tableNumber = ""
             this.showTableNumber = false;
+            this.isRyanTong = false;
             const name = this.name.toLowerCase();
-            this.tableNumber = name_to_table[name];
-            const pokemon = table_to_pokemon[this.tableNumber];
-            if (pokemon == "Morpeko") {
-              this.pokemonImage = "/wedding/morpeko.png";
-            } else if (pokemon != undefined) {
-              const pokemonId = pokemon_to_id[pokemon];
-              this.pokemonImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+            if (name === "ryan tong") {
+              this.isRyanTong = true;
+            } else {
+              this.tableNumber = name_to_table[name];
+              const pokemon = table_to_pokemon[this.tableNumber];
+              if (pokemon == "Morpeko") {
+                this.pokemonImage = "/wedding/morpeko.png";
+              } else if (pokemon != undefined) {
+                const pokemonId = pokemon_to_id[pokemon];
+                this.pokemonImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+              }
             }
             this.guessed = true
           },
           reveal() {
             this.showTableNumber = true;
-          },
-          reset() {
-            this.name = "";
-            this.tableNumber = "";
-            this.showTableNumber = false;
-            this.pokemonImage = "";
-            this.guessed = false
           },
         }));
       });
